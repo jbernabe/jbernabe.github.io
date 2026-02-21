@@ -1,274 +1,1434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juan Bernabé-Moreno | About Me</title>
-    <style>
-        /* IBM-Inspired Color Palette & Minimalist Reset */
-        :root {
-            --ibm-blue: #0f62fe;
-            --ibm-dark: #161616;
-            --ibm-light: #f4f4f4;
-            --ibm-white: #ffffff;
-            --accent-warm: #ff832b;
-            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juan Bernabé-Moreno — Director, IBM Research Europe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ibm-blue: #0f62fe;
+  --ibm-blue-dark: #0043ce;
+  --ibm-blue-deep: #001d6c;
+  --ibm-cyan: #00d4ff;
+  --ibm-teal: #009d9a;
+  --ibm-magenta: #ee5396;
+  --ibm-white: #f4f4f4;
+  --ibm-cool-gray-10: #dde1e6;
+  --ibm-cool-gray-30: #a2a9b0;
+  --ibm-cool-gray-50: #697077;
+  --ibm-cool-gray-90: #21272a;
+  --ibm-cool-gray-100: #121619;
+  --ibm-warm-white: #faf9f7;
+  --accent-gold: #f1c21b;
+  --accent-earth: #5b8c5a;
+  --font-sans: 'IBM Plex Sans', -apple-system, sans-serif;
+  --font-serif: 'IBM Plex Serif', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --max-width: 1280px;
+  --section-padding: 100px 0;
+}
 
-        body, h1, h2, h3, p, ul, li {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: var(--font-main);
-            color: var(--ibm-dark);
-            background-color: var(--ibm-light);
-            line-height: 1.6;
-            font-size: 18px;
-        }
+html { scroll-behavior: smooth; font-size: 16px; }
 
-        a {
-            color: var(--ibm-blue);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+body {
+  font-family: var(--font-sans);
+  color: var(--ibm-cool-gray-90);
+  background: var(--ibm-warm-white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
 
-        a:hover {
-            color: var(--accent-warm);
-        }
+::selection {
+  background: var(--ibm-blue);
+  color: white;
+}
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+/* ── NAV ── */
+.topnav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(18, 22, 25, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.35s ease;
+}
+.topnav.hidden { transform: translateY(-100%); }
+.topnav-inner {
+  max-width: var(--max-width); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 56px;
+}
+.topnav-brand {
+  font-family: var(--font-sans); font-weight: 600; font-size: 0.875rem;
+  color: white; text-decoration: none; letter-spacing: 0.02em;
+  display: flex; align-items: center; gap: 10px;
+}
+.topnav-brand .ibm-bee {
+  width: 24px; height: 24px;
+  background: var(--ibm-blue);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: white; letter-spacing: 0;
+}
+.topnav-links { display: flex; gap: 32px; align-items: center; }
+.topnav-links a {
+  color: var(--ibm-cool-gray-30); text-decoration: none;
+  font-size: 0.8125rem; font-weight: 400; letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+.topnav-links a:hover { color: white; }
 
-        /* Typography */
-        h1, h2, h3 {
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  background: var(--ibm-cool-gray-100);
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 70% 40%, rgba(15,98,254,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(0,157,154,0.12) 0%, transparent 50%),
+    linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+}
+.hero-grid-overlay {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.hero-particles {
+  position: absolute; inset: 0; overflow: hidden;
+}
+.hero-particle {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: var(--ibm-cyan);
+  border-radius: 50%;
+  opacity: 0;
+  animation: float-particle 8s ease-in-out infinite;
+}
+@keyframes float-particle {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
+  50% { opacity: 0.6; transform: translateY(-120px) scale(1.5); }
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: var(--max-width); margin: 0 auto;
+  padding: 140px 40px 100px;
+  display: grid; grid-template-columns: 1fr 380px; gap: 80px;
+  align-items: center;
+}
+.hero-text { animation: fadeUp 1s ease 0.2s both; }
+.hero-eyebrow {
+  font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500;
+  color: var(--ibm-cyan); letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-eyebrow::before {
+  content: ''; width: 40px; height: 1px; background: var(--ibm-cyan);
+}
+.hero-title {
+  font-family: var(--font-serif); font-weight: 300;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.12; color: white;
+  margin-bottom: 28px;
+}
+.hero-title strong { font-weight: 600; }
+.hero-subtitle {
+  font-size: 1.125rem; line-height: 1.7;
+  color: var(--ibm-cool-gray-30); font-weight: 300;
+  max-width: 580px; margin-bottom: 40px;
+}
+.hero-subtitle em {
+  font-style: normal; color: white; font-weight: 400;
+}
+.hero-tags {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px;
+}
+.hero-tag {
+  padding: 6px 16px;
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.7);
+  border-radius: 2px;
+  transition: all 0.25s;
+}
+.hero-tag:hover {
+  border-color: var(--ibm-blue);
+  color: white; background: rgba(15,98,254,0.1);
+}
+.hero-cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px;
+  background: var(--ibm-blue); color: white;
+  font-family: var(--font-sans); font-size: 0.875rem; font-weight: 500;
+  text-decoration: none; border: none; cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--ibm-blue-dark); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px;
+  background: transparent; color: white;
+  font-family: var(--font-sans); font-size: 0.875rem; font-weight: 500;
+  text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer; letter-spacing: 0.02em;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.04); }
+.hero-photo-col {
+  display: flex; flex-direction: column; align-items: center;
+  animation: fadeUp 1s ease 0.5s both;
+}
+.hero-photo-frame {
+  position: relative; width: 320px; height: 400px;
+}
+.hero-photo-frame::before {
+  content: '';
+  position: absolute; top: -8px; left: -8px; right: 8px; bottom: 8px;
+  border: 1px solid var(--ibm-blue);
+  opacity: 0.3;
+}
+.hero-photo-placeholder {
+  width: 100%; height: 100%;
+  background:
+    linear-gradient(135deg, rgba(15,98,254,0.2) 0%, rgba(0,157,154,0.15) 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: var(--ibm-cool-gray-30); font-size: 0.8rem; font-weight: 400;
+  border: 1px solid rgba(255,255,255,0.06);
+  gap: 12px;
+}
+.hero-photo-placeholder .photo-icon {
+  width: 64px; height: 64px;
+  border: 2px solid var(--ibm-cool-gray-50);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; color: var(--ibm-cool-gray-50);
+}
+.hero-photo-meta {
+  margin-top: 20px; text-align: center;
+  font-family: var(--font-mono); font-size: 0.7rem;
+  color: var(--ibm-cool-gray-50); letter-spacing: 0.06em;
+}
 
-        h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-        }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-        h2 {
-            font-size: 2rem;
-            border-bottom: 2px solid var(--ibm-blue);
-            padding-bottom: 10px;
-            margin-top: 50px;
-        }
+/* ── STATS BAND ── */
+.stats-band {
+  background: var(--ibm-blue-deep);
+  border-top: 1px solid rgba(15,98,254,0.3);
+}
+.stats-inner {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: 0 40px;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+}
+.stat-item {
+  padding: 40px 0;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+}
+.stat-item:last-child { border-right: none; }
+.stat-number {
+  font-family: var(--font-serif); font-weight: 600;
+  font-size: 2.25rem; color: white;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-size: 0.75rem; font-weight: 400;
+  color: var(--ibm-cool-gray-30);
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
 
-        /* Hero Section */
-        .hero {
-            background-color: var(--ibm-white);
-            padding: 80px 0;
-            text-align: center;
-            border-bottom: 1px solid #e0e0e0;
-        }
+/* ── SECTIONS ── */
+.section {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: var(--section-padding); padding-left: 40px; padding-right: 40px;
+}
+.section-eyebrow {
+  font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500;
+  color: var(--ibm-blue); letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-eyebrow::before {
+  content: ''; width: 32px; height: 1px; background: var(--ibm-blue);
+}
+.section-title {
+  font-family: var(--font-serif); font-weight: 300;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.2; color: var(--ibm-cool-gray-100);
+  margin-bottom: 20px;
+}
+.section-title strong { font-weight: 600; }
+.section-intro {
+  font-size: 1.0625rem; line-height: 1.75; color: var(--ibm-cool-gray-50);
+  max-width: 680px; font-weight: 300;
+}
 
-        .hero h1 {
-            color: var(--ibm-dark);
-            margin-bottom: 10px;
-        }
+/* ── JOURNEY TIMELINE ── */
+.journey-bg {
+  background: var(--ibm-warm-white);
+  border-top: 1px solid var(--ibm-cool-gray-10);
+  border-bottom: 1px solid var(--ibm-cool-gray-10);
+}
+.timeline {
+  margin-top: 64px;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute; left: 180px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--ibm-cool-gray-10), var(--ibm-blue), var(--ibm-teal), var(--ibm-blue));
+}
+.tl-item {
+  display: grid; grid-template-columns: 160px 1fr;
+  gap: 60px; padding-bottom: 64px;
+  position: relative;
+  opacity: 0; transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.tl-item.visible {
+  opacity: 1; transform: translateY(0);
+}
+.tl-item::before {
+  content: '';
+  position: absolute; left: 174px; top: 8px;
+  width: 14px; height: 14px;
+  background: var(--ibm-warm-white);
+  border: 3px solid var(--ibm-blue);
+  border-radius: 50%;
+  z-index: 2;
+}
+.tl-year {
+  text-align: right;
+  font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--ibm-cool-gray-50); font-weight: 500;
+  padding-top: 4px; letter-spacing: 0.02em;
+}
+.tl-body { padding-left: 40px; }
+.tl-org {
+  font-size: 0.7rem; font-weight: 600;
+  color: var(--ibm-blue); letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.tl-role {
+  font-family: var(--font-serif); font-size: 1.375rem; font-weight: 500;
+  color: var(--ibm-cool-gray-100); line-height: 1.3;
+  margin-bottom: 12px;
+}
+.tl-desc {
+  font-size: 0.9375rem; line-height: 1.75; color: var(--ibm-cool-gray-50);
+  font-weight: 300; max-width: 600px;
+}
+.tl-desc a {
+  color: var(--ibm-blue); text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.tl-desc a:hover { border-bottom-color: var(--ibm-blue); }
+.tl-badge {
+  display: inline-block;
+  margin-top: 12px; padding: 4px 12px;
+  background: rgba(15,98,254,0.06);
+  border-left: 3px solid var(--ibm-blue);
+  font-size: 0.8rem; color: var(--ibm-blue-dark);
+  font-weight: 500;
+}
 
-        .hero .tagline {
-            font-size: 1.25rem;
-            color: #525252;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
+/* ── MODELS SHOWCASE (Dark) ── */
+.models-section {
+  background: var(--ibm-cool-gray-100);
+  color: white;
+  padding: var(--section-padding);
+}
+.models-inner {
+  max-width: var(--max-width); margin: 0 auto; padding: 0 40px;
+}
+.models-section .section-eyebrow { color: var(--ibm-cyan); }
+.models-section .section-eyebrow::before { background: var(--ibm-cyan); }
+.models-section .section-title { color: white; }
+.models-section .section-intro { color: var(--ibm-cool-gray-30); }
+.models-grid {
+  margin-top: 56px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+}
+.model-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s;
+}
+.model-card:hover {
+  border-color: rgba(15,98,254,0.3);
+  background: rgba(15,98,254,0.04);
+  transform: translateY(-2px);
+}
+.model-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--ibm-blue);
+  opacity: 0; transition: opacity 0.3s;
+}
+.model-card:hover::before { opacity: 1; }
+.model-icon {
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 20px;
+  background: rgba(15,98,254,0.1);
+  border-radius: 4px;
+}
+.model-name {
+  font-family: var(--font-sans); font-weight: 600;
+  font-size: 1.125rem; color: white;
+  margin-bottom: 8px;
+}
+.model-subtitle {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  color: var(--ibm-cyan); letter-spacing: 0.06em;
+  margin-bottom: 16px; text-transform: uppercase;
+}
+.model-desc {
+  font-size: 0.875rem; line-height: 1.7;
+  color: var(--ibm-cool-gray-30); font-weight: 300;
+}
+.model-stat {
+  margin-top: 16px; padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--accent-gold);
+}
 
-        .video-placeholder {
-            width: 100%;
-            max-width: 600px;
-            height: 340px;
-            background-color: #e0e0e0;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            color: #525252;
-            font-style: italic;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+/* ── IMPACT METRICS ── */
+.impact-section {
+  background: white;
+  border-top: 1px solid var(--ibm-cool-gray-10);
+  border-bottom: 1px solid var(--ibm-cool-gray-10);
+}
+.impact-grid {
+  margin-top: 56px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+}
+.impact-card {
+  padding: 40px;
+  border: 1px solid var(--ibm-cool-gray-10);
+  position: relative;
+  transition: all 0.3s;
+}
+.impact-card:hover {
+  border-color: var(--ibm-blue);
+  box-shadow: 0 8px 32px rgba(15,98,254,0.08);
+}
+.impact-number {
+  font-family: var(--font-serif); font-weight: 600;
+  font-size: 2.75rem; color: var(--ibm-blue);
+  line-height: 1; margin-bottom: 8px;
+}
+.impact-label {
+  font-size: 0.875rem; color: var(--ibm-cool-gray-50);
+  line-height: 1.5; font-weight: 400;
+}
 
-        /* Content Sections */
-        .section-content {
-            background-color: var(--ibm-white);
-            padding: 60px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
+/* ── RECOGNITION ── */
+.recognition-list {
+  margin-top: 48px;
+  display: flex; flex-direction: column;
+}
+.recog-item {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 40px; padding: 28px 0;
+  border-bottom: 1px solid var(--ibm-cool-gray-10);
+  align-items: baseline;
+  transition: all 0.3s;
+}
+.recog-item:first-child { border-top: 1px solid var(--ibm-cool-gray-10); }
+.recog-item:hover { padding-left: 8px; }
+.recog-year {
+  font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--ibm-cool-gray-50); font-weight: 500;
+}
+.recog-title {
+  font-size: 1rem; font-weight: 500;
+  color: var(--ibm-cool-gray-90);
+}
+.recog-org {
+  font-size: 0.8125rem; color: var(--ibm-cool-gray-50);
+  font-weight: 300; margin-top: 4px;
+}
 
-        /* Subheadings / Timeline styling */
-        .timeline-item {
-            margin-bottom: 30px;
-        }
+/* ── MEDIA SECTION ── */
+.media-section {
+  background: var(--ibm-cool-gray-100);
+  color: white;
+}
+.media-section .section-eyebrow { color: var(--ibm-magenta); }
+.media-section .section-eyebrow::before { background: var(--ibm-magenta); }
+.media-section .section-title { color: white; }
+.media-grid {
+  margin-top: 56px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.media-card {
+  padding: 32px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.3s;
+  display: flex; flex-direction: column;
+}
+.media-card:hover {
+  border-color: rgba(238,83,150,0.3);
+  background: rgba(238,83,150,0.04);
+}
+.media-type {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  color: var(--ibm-magenta); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.media-title {
+  font-family: var(--font-serif); font-size: 1.0625rem;
+  font-weight: 500; color: white; line-height: 1.4;
+  margin-bottom: 12px; flex: 1;
+}
+.media-outlet {
+  font-size: 0.8rem; color: var(--ibm-cool-gray-30);
+  font-weight: 300;
+}
+.media-card a {
+  color: inherit; text-decoration: none;
+}
 
-        .timeline-item h3 {
-            color: var(--ibm-blue);
-            margin-bottom: 10px;
-        }
+/* ── PARTNER LOGOS ── */
+.partners-band {
+  background: white;
+  border-top: 1px solid var(--ibm-cool-gray-10);
+  border-bottom: 1px solid var(--ibm-cool-gray-10);
+  padding: 60px 0;
+}
+.partners-inner {
+  max-width: var(--max-width); margin: 0 auto; padding: 0 40px;
+  text-align: center;
+}
+.partners-label {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  color: var(--ibm-cool-gray-50); letter-spacing: 0.15em;
+  text-transform: uppercase; margin-bottom: 40px;
+}
+.partners-logos {
+  display: flex; align-items: center; justify-content: center;
+  gap: 60px; flex-wrap: wrap;
+}
+.partner-logo {
+  font-family: var(--font-sans); font-weight: 700;
+  font-size: 1.25rem; color: var(--ibm-cool-gray-30);
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+}
+.partner-logo:hover { color: var(--ibm-cool-gray-90); }
+.partner-logo.ibm { color: var(--ibm-blue); font-size: 1.5rem; }
 
-        /* Call to Action Buttons (Micro-interactions) */
-        .cta-container {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
+/* ── TEACHING ── */
+.teaching-cards {
+  margin-top: 48px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+}
+.teach-card {
+  padding: 40px;
+  border: 1px solid var(--ibm-cool-gray-10);
+  background: white;
+  transition: all 0.3s;
+}
+.teach-card:hover {
+  border-color: var(--ibm-blue);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+}
+.teach-icon {
+  font-size: 1.75rem; margin-bottom: 16px;
+}
+.teach-title {
+  font-family: var(--font-serif); font-size: 1.25rem;
+  font-weight: 500; color: var(--ibm-cool-gray-100);
+  margin-bottom: 8px;
+}
+.teach-uni {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  color: var(--ibm-blue); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.teach-desc {
+  font-size: 0.875rem; line-height: 1.7;
+  color: var(--ibm-cool-gray-50); font-weight: 300;
+}
 
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: var(--ibm-blue);
-            color: var(--ibm-white);
-            border-radius: 4px;
-            font-weight: 600;
-            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-        }
+/* ── FAQ ── */
+.faq-list { margin-top: 48px; max-width: 740px; }
+.faq-item {
+  border-bottom: 1px solid var(--ibm-cool-gray-10);
+}
+.faq-item:first-child { border-top: 1px solid var(--ibm-cool-gray-10); }
+.faq-q {
+  padding: 24px 0;
+  font-family: var(--font-serif); font-size: 1.0625rem;
+  font-weight: 500; color: var(--ibm-cool-gray-100);
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  user-select: none;
+}
+.faq-q::after {
+  content: '+'; font-family: var(--font-sans); font-weight: 300;
+  font-size: 1.5rem; color: var(--ibm-blue);
+  transition: transform 0.3s;
+}
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 24px; }
+.faq-a p {
+  font-size: 0.9375rem; line-height: 1.75;
+  color: var(--ibm-cool-gray-50); font-weight: 300;
+}
+.faq-a a {
+  color: var(--ibm-blue); text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.faq-a a:hover { border-bottom-color: var(--ibm-blue); }
 
-        .btn:hover {
-            background-color: #0353e9;
-            color: var(--ibm-white);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(15, 98, 254, 0.3);
-        }
+/* ── PERSONAL / HUMAN TOUCH ── */
+.personal-section {
+  background: linear-gradient(135deg, #faf9f7 0%, #f0f0f0 100%);
+  border-top: 1px solid var(--ibm-cool-gray-10);
+}
+.personal-grid {
+  margin-top: 48px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+  align-items: start;
+}
+.personal-text p {
+  font-size: 0.9375rem; line-height: 1.85;
+  color: var(--ibm-cool-gray-50); font-weight: 300;
+  margin-bottom: 16px;
+}
+.language-pills {
+  display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap;
+}
+.lang-pill {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 18px;
+  background: white;
+  border: 1px solid var(--ibm-cool-gray-10);
+  font-size: 0.8125rem; font-weight: 500;
+  color: var(--ibm-cool-gray-90);
+}
+.lang-flag { font-size: 1.1rem; }
+.signature {
+  margin-top: 48px;
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 1.5rem; font-weight: 300;
+  color: var(--ibm-cool-gray-90);
+  opacity: 0.7;
+}
+.personal-values {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.value-item {
+  padding: 24px;
+  background: white;
+  border-left: 3px solid var(--ibm-blue);
+}
+.value-title {
+  font-weight: 600; font-size: 0.9375rem;
+  color: var(--ibm-cool-gray-100);
+  margin-bottom: 6px;
+}
+.value-desc {
+  font-size: 0.8125rem; line-height: 1.65;
+  color: var(--ibm-cool-gray-50); font-weight: 300;
+}
 
-        .btn-outline {
-            background-color: transparent;
-            color: var(--ibm-blue);
-            border: 2px solid var(--ibm-blue);
-        }
+/* ── CTA / CONNECT ── */
+.cta-section {
+  background: var(--ibm-cool-gray-100);
+  padding: 100px 0;
+  text-align: center;
+}
+.cta-inner {
+  max-width: 640px; margin: 0 auto; padding: 0 40px;
+}
+.cta-section .section-eyebrow {
+  justify-content: center; color: var(--ibm-cyan);
+}
+.cta-section .section-eyebrow::before { display: none; }
+.cta-section .section-title { color: white; text-align: center; }
+.cta-text {
+  font-size: 1rem; line-height: 1.75;
+  color: var(--ibm-cool-gray-30); font-weight: 300;
+  margin-bottom: 40px;
+}
+.cta-links {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+}
+.cta-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 24px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: white; text-decoration: none;
+  font-size: 0.8125rem; font-weight: 500;
+  transition: all 0.25s;
+}
+.cta-link:hover {
+  border-color: var(--ibm-blue);
+  background: rgba(15,98,254,0.1);
+}
+.cta-link svg {
+  width: 16px; height: 16px; fill: currentColor;
+}
 
-        .btn-outline:hover {
-            background-color: var(--ibm-blue);
-            color: var(--ibm-white);
-        }
+/* ── FOOTER ── */
+.site-footer {
+  background: var(--ibm-cool-gray-100);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 32px 0;
+}
+.footer-inner {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: 0 40px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-text {
+  font-size: 0.75rem; color: var(--ibm-cool-gray-50);
+}
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-size: 0.75rem; color: var(--ibm-cool-gray-50);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: white; }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            font-size: 0.9rem;
-            color: #525252;
-        }
-
-        .signature {
-            font-family: 'Brush Script MT', cursive;
-            font-size: 2rem;
-            color: var(--ibm-blue);
-            margin-top: 20px;
-            display: inline-block;
-        }
-    </style>
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  .hero-content { grid-template-columns: 1fr; gap: 48px; }
+  .hero-photo-col { display: none; }
+  .stats-inner { grid-template-columns: repeat(3, 1fr); }
+  .stat-item:nth-child(4), .stat-item:nth-child(5) {
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .models-grid { grid-template-columns: 1fr; }
+  .impact-grid { grid-template-columns: 1fr; }
+  .media-grid { grid-template-columns: 1fr; }
+  .teaching-cards { grid-template-columns: 1fr; }
+  .personal-grid { grid-template-columns: 1fr; }
+  .timeline::before { left: 20px; }
+  .tl-item { grid-template-columns: 1fr; gap: 8px; padding-left: 52px; }
+  .tl-item::before { left: 14px; }
+  .tl-year { text-align: left; }
+  .tl-body { padding-left: 0; }
+  .recog-item { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (max-width: 640px) {
+  .topnav-links { display: none; }
+  .hero-content { padding: 120px 24px 80px; }
+  .section { padding: 64px 24px; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); padding: 0 24px; }
+  .models-inner { padding: 0 24px; }
+  .cta-inner { padding: 0 24px; }
+}
+</style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="container">
-            <h1>Juan Bernabé-Moreno</h1>
-            <p class="tagline">Director of IBM Research Europe focused on AI, quantum computing, and Earth-and-space applications.</p>
-            
-            <div class="video-placeholder">
-                [Insert Professional Headshot or Short Introductory Video]
-            </div>
+<!-- ════════ NAV ════════ -->
+<nav class="topnav" id="topnav">
+  <div class="topnav-inner">
+    <a href="#" class="topnav-brand">
+      <span class="ibm-bee">JBM</span>
+      Juan Bernabé-Moreno
+    </a>
+    <div class="topnav-links">
+      <a href="#journey">Journey</a>
+      <a href="#research">Research</a>
+      <a href="#recognition">Recognition</a>
+      <a href="#media">Media</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#faq">FAQ</a>
+      <a href="#connect">Connect</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">IBM Research Europe · Director</div>
+      <h1 class="hero-title">
+        <strong>Dr. Juan<br>Bernabé-Moreno</strong>
+      </h1>
+      <p class="hero-subtitle">
+        Directing IBM Research laboratories across <em>Dublin, Daresbury, and Hursley</em>. Leading AI and quantum computing research with <em>NASA</em> and the <em>European Space Agency</em> to build foundation models that understand our planet—and beyond.
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag">Artificial Intelligence</span>
+        <span class="hero-tag">Quantum Computing</span>
+        <span class="hero-tag">Foundation Models</span>
+        <span class="hero-tag">Earth & Space</span>
+        <span class="hero-tag">Climate & Sustainability</span>
+      </div>
+      <div class="hero-cta-row">
+        <a href="https://research.ibm.com/people/juan-bernabe-moreno" class="btn-primary" target="_blank">
+          IBM Research Profile →
+        </a>
+        <a href="#connect" class="btn-ghost">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+    <div class="hero-photo-col">
+      <div class="hero-photo-frame">
+        <div class="hero-photo-placeholder">
+          <div class="photo-icon">📷</div>
+          <span>Professional photo<br>placeholder</span>
         </div>
-    </header>
+      </div>
+      <div class="hero-photo-meta">Dublin, Ireland · IBM Research</div>
+    </div>
+  </div>
+</section>
 
-    <div class="container">
-        <section class="section-content" style="margin-top: -30px; position: relative; z-index: 10;">
-            <h2>Hello, I’m Juan.</h2>
-            [cite_start]<p>I am a Spanish computer scientist, technology executive, and academic. [cite: 151] [cite_start]As the Director of IBM Research Europe for Ireland and the United Kingdom, I lead research laboratories in Dublin, Daresbury, and Hursley focusing on artificial intelligence, quantum computing, and high-performance computing. [cite: 152]</p>
-        </section>
+<!-- ════════ STATS BAND ════════ -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number">20+</div>
+      <div class="stat-label">Years in Data & AI</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">3</div>
+      <div class="stat-label">Research Labs Led</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Publications</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">1M+</div>
+      <div class="stat-label">Model Downloads</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">1,100+</div>
+      <div class="stat-label">Citations</div>
+    </div>
+  </div>
+</div>
 
-        <section class="section-content">
-            <h2>My Professional Journey</h2>
-            
-            <div class="timeline-item">
-                <h3>Early Foundations & Education</h3>
-                [cite_start]<p>Born in Antequera, Málaga, Spain, my foundation in technology began with my undergraduate studies in computer science at the University of Granada, including an exchange at the Technische Universität Braunschweig in Germany. [cite: 160] [cite_start]I went on to complete a master's degree and obtained my PhD in Computer Science from the University of Granada, focusing on the intersection of AI, natural language processing, and social network analysis. [cite: 161, 162]</p>
-            </div>
+<!-- ════════ JOURNEY ════════ -->
+<section class="section journey-bg" id="journey">
+  <div class="section-eyebrow">Professional Journey</div>
+  <h2 class="section-title">From Antequera to <strong>IBM Research</strong></h2>
+  <p class="section-intro">
+    A career built at the intersection of research and industry—transforming how the world's largest organisations harness data, AI, and quantum computing.
+  </p>
 
-            <div class="timeline-item">
-                <h3>Pioneering Data at Telefónica</h3>
-                [cite_start]<p>Earlier in my career, I held senior data and analytics leadership roles at Telefónica. [cite: 156] [cite_start]As Big Data Lab Manager for Telefónica Digital, I led the global product team that created <em>Smart Steps</em>, a data product that won the Best Corporate Venture award in 2013. [cite: 168]</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3>Scaling AI at E.ON</h3>
-                [cite_start]<p>Prior to my current role, I served as the first Chief Data Officer and Global Head of Data and Analytics at E.ON, Europe's largest investor-owned energy company. [cite: 154, 172] [cite_start]I designed and executed <em>Data.ON</em>, an enterprise-wide transformation programme that took the company from near-zero AI maturity to scaled AI across the business. [cite: 173] [cite_start]This journey was later documented as an INSEAD business school case study. [cite: 155, 175]</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3>Advancing Science at IBM Research</h3>
-                [cite_start]<p>Since joining IBM in June 2022, I have also had the privilege of leading IBM's Algorithms and Applications Research mission for Earth and Space. [cite: 153, 180] </p>
-                <br>
-                                <br>
-                [cite_start]<p>Partnering with NASA and the European Space Agency (ESA), my teams and I have built open-source foundation models for science, including <em>Prithvi-EO</em> for Earth observation, <em>Prithvi WxC</em> for weather forecasting, <em>Surya</em> for heliophysics, and <em>TerraMind</em>. [cite: 153, 188, 190, 191, 193]</p>
-            </div>
-        </section>
-
-        <section class="section-content">
-            <h2>Impact & Social Proof</h2>
-                        <ul>
-                [cite_start]<li><strong>Global Recognition:</strong> In December 2025, I was honoured with the <em>Valor Directivo de España en el Mundo</em> recognition for contributing to Spain's reputation and internationalisation. [cite: 218, 219]</li>
-                [cite_start]<li><strong>Scientific Awards:</strong> My work has been recognised by organizations including NASA and the American Geophysical Union, including the NASA Group Achievement Honor Award (2025) and the AGU Honors Open Source Award (2025). [cite: 158, 217]</li>
-                [cite_start]<li><strong>Media & Thought Leadership:</strong> I am a regular commentator on AI and quantum computing in international media, with notable appearances on Malcolm Gladwell's <em>Smart Talks</em> podcast, <em>The Times Tech Podcast</em>, and <em>Wired</em>. [cite: 221, 222, 223, 224]</li>
-                [cite_start]<li><strong>Consortiums:</strong> I am proud to be a member of the MIT Climate and Sustainability Consortium, representing IBM Research. [cite: 199]</li>
-            </ul>
-        </section>
-
-        <section class="section-content">
-            <h2>Mission & Values (FAQ)</h2>
-            <div class="timeline-item">
-                <h3>Why is teaching important to you?</h3>
-                <p>I believe in sharing knowledge with the next generation. [cite_start]Since April 2022, I have been an invited professor at the Ludwig Maximilian University of Munich (LMU), where I teach courses on Quantum Applications and Intelligent Systems. [cite: 213, 214, 215]</p>
-            </div>
-            
-            <div class="timeline-item">
-                <h3>Behind the Scenes</h3>
-                <p>While my work takes me across the globe, I am currently based in Dublin, Ireland. [cite_start]I am a native Spanish speaker and am also fluent in English and German. [cite: 232]</p>
-            </div>
-        </section>
-
-        <section class="section-content" style="text-align: center;">
-            <h2>Let's Connect</h2>
-            <p>I am always open to discussing AI, quantum computing, and their applications in climate and space science.</p>
-            
-            <div class="cta-container" style="justify-content: center;">
-                <a href="#" class="btn">Contact Me for Collaborations</a>
-                <a href="#" class="btn btn-outline">Read My Publications</a>
-            </div>
-
-            <div style="margin-top: 40px; text-align: left;">
-                <h3>Professional Links</h3>
-                <ul>
-                    [cite_start]<li><a href="#">IBM Research profile</a> [cite: 277]</li>
-                    [cite_start]<li><a href="#">Google Scholar profile</a> [cite: 278]</li>
-                    [cite_start]<li><a href="#">ResearchGate profile</a> [cite: 279]</li>
-                    [cite_start]<li><a href="#">MIT Climate & Sustainability Consortium profile</a> [cite: 280]</li>
-                    [cite_start]<li><a href="#">ORCID profile</a> [cite: 281]</li>
-                </ul>
-            </div>
-            
-            <div class="signature">
-                Juan Bernabé-Moreno
-            </div>
-        </section>
-
+  <div class="timeline">
+    <!-- Education -->
+    <div class="tl-item">
+      <div class="tl-year">2002 — 2015</div>
+      <div class="tl-body">
+        <div class="tl-org">University of Granada · TU Braunschweig</div>
+        <div class="tl-role">Education & Foundations</div>
+        <div class="tl-desc">
+          Born in Antequera, Málaga. Engineer's degree in Computer Science from the <a href="https://www.ugr.es/" target="_blank">University of Granada</a> (2002), including an exchange at Technische Universität Braunschweig, Germany. Master's in Soft Computing and Intelligent Systems (2009). PhD in Computer Science (2015) under Professor Enrique Herrera-Viedma, focused on AI, NLP, and social network analysis—completed while working full-time in industry.
+        </div>
+      </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Juan Bernabé-Moreno. All rights reserved.</p>
-    </footer>
+    <!-- Early Career -->
+    <div class="tl-item">
+      <div class="tl-year">2002 — 2009</div>
+      <div class="tl-body">
+        <div class="tl-org">Publicis Sapient · DMR Consulting · Vision Unlimited</div>
+        <div class="tl-role">Software Development & IT Consulting</div>
+        <div class="tl-desc">
+          Early career spanning software engineering and consulting, building the technical foundations that would underpin a career in data and AI transformation.
+        </div>
+      </div>
+    </div>
+
+    <!-- Telefónica -->
+    <div class="tl-item">
+      <div class="tl-year">2009 — 2017</div>
+      <div class="tl-body">
+        <div class="tl-org">Telefónica</div>
+        <div class="tl-role">Big Data Lab Manager → Data Science Leadership</div>
+        <div class="tl-desc">
+          Pioneered data monetisation at Telefónica Germany. Led the global team that created <a href="https://smartsteps.telefonica.com" target="_blank">Smart Steps</a>, winning Best Corporate Venture at the Corporate Entrepreneur Awards (2013). Drove web intelligence and data-driven culture transformation across the organisation.
+        </div>
+        <div class="tl-badge">🏆 Best Corporate Venture Award 2013</div>
+      </div>
+    </div>
+
+    <!-- E.ON -->
+    <div class="tl-item">
+      <div class="tl-year">2017 — 2022</div>
+      <div class="tl-body">
+        <div class="tl-org">E.ON</div>
+        <div class="tl-role">Chief Data Officer & Global Head of Data and Analytics</div>
+        <div class="tl-desc">
+          Appointed as E.ON's first-ever CDO, tasked with transforming Europe's largest investor-owned energy company (~70,000 employees, 15+ markets). Designed and executed <strong>Data.ON</strong>—the board-approved enterprise data strategy that took E.ON from near-zero AI maturity to embedded, scaled AI. The transformation was documented as <a href="https://publishing.insead.edu/case/eon-building-new-ai-powered-energy-world" target="_blank">INSEAD case study 6595</a>, co-authored with Professor Theodoros Evgeniou and taught globally to MBA and executive students.
+        </div>
+        <div class="tl-badge">📚 INSEAD Business School Case Study</div>
+      </div>
+    </div>
+
+    <!-- IBM -->
+    <div class="tl-item">
+      <div class="tl-year">2022 — Present</div>
+      <div class="tl-body">
+        <div class="tl-org">IBM Research</div>
+        <div class="tl-role">Director, IBM Research Europe (Ireland & UK)</div>
+        <div class="tl-desc">
+          Leading IBM's research operations across three laboratories—Dublin, Hursley, and Daresbury—conducting frontier research in AI, quantum computing, semiconductors, and high-performance computing. Serving as IBM's global Accelerated Discovery Lead for Climate and Sustainability. Leading the Algorithms and Applications Research mission with <a href="https://science.nasa.gov/earth-science/ai-driven-accelerated-discovery/" target="_blank">NASA</a> and <a href="https://www.esa.int" target="_blank">ESA</a> partnerships across seven global research labs. Engaging with UK and Irish governments on national quantum and AI strategies, and maintaining a joint research programme with <a href="https://www.tcd.ie" target="_blank">Trinity College Dublin</a>. Member of the <a href="https://impactclimate.mit.edu" target="_blank">MIT Climate and Sustainability Consortium</a>.
+        </div>
+        <div class="tl-badge">🌍 NASA · ESA · 7 Global Research Labs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOUNDATION MODELS ════════ -->
+<section class="models-section" id="research">
+  <div class="models-inner">
+    <div class="section-eyebrow">Foundation Models for Science</div>
+    <h2 class="section-title">Building AI that understands <strong>Earth and Space</strong></h2>
+    <p class="section-intro">
+      Leading a family of open-source foundation models developed with NASA and ESA—from Earth observation to space weather prediction.
+    </p>
+
+    <div class="models-grid">
+      <div class="model-card">
+        <div class="model-icon">🌍</div>
+        <div class="model-name">Prithvi (Earth Observation)</div>
+        <div class="model-subtitle">With NASA · Geospatial AI</div>
+        <div class="model-desc">
+          Geospatial foundation model trained on NASA's Harmonized Landsat and Sentinel-2 data. Designed for flood mapping, burn scar detection, and cropland analysis.
+        </div>
+        <div class="model-stat">1,000,000+ downloads on Hugging Face</div>
+      </div>
+      <div class="model-card">
+        <div class="model-icon">🌦️</div>
+        <div class="model-name">Prithvi Weather & Climate</div>
+        <div class="model-subtitle">2.3B Parameters · NASA MERRA-2</div>
+        <div class="model-desc">
+          A 2.3-billion-parameter foundation model for weather and climate forecasting, trained on 160 variables from NASA's MERRA-2 reanalysis data.
+        </div>
+        <div class="model-stat">160 variables · Global coverage</div>
+      </div>
+      <div class="model-card">
+        <div class="model-icon">☀️</div>
+        <div class="model-name">HelioFM (Heliophysics)</div>
+        <div class="model-subtitle">With NASA · Space Weather</div>
+        <div class="model-desc">
+          AI foundation model trained on 14 years of NASA Solar Dynamics Observatory observations. Described by Bernabé-Moreno as "a weather forecast for space."
+        </div>
+        <div class="model-stat">14 years of solar observations</div>
+      </div>
+      <div class="model-card">
+        <div class="model-icon">🛰️</div>
+        <div class="model-name">TerraMind</div>
+        <div class="model-subtitle">With ESA · FAST-EO · ICCV 2025</div>
+        <div class="model-desc">
+          The first any-to-any generative, multimodal foundation model for Earth observation. Achieved state-of-the-art results on PANGAEA benchmark. Published at ICCV 2025.
+        </div>
+        <div class="model-stat">ICCV 2025 · PANGAEA SOTA</div>
+      </div>
+    </div>
+
+    <div style="margin-top:40px; padding:32px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02);">
+      <div style="display:flex; gap:24px; align-items:start; flex-wrap:wrap;">
+        <div style="flex:1; min-width:280px;">
+          <div class="model-subtitle" style="color:var(--accent-gold);">Latest Release · November 2025</div>
+          <div class="model-name" style="margin-top:8px;">ImpactMesh</div>
+          <div class="model-desc" style="margin-top:8px;">
+            Released with ESA—a global multimodal dataset for disaster mapping, with fine-tuned TerraMind models for flood and wildfire analysis. "ImpactMesh could set a new standard for applying geospatial AI to natural disasters."
+          </div>
+        </div>
+        <div style="flex:1; min-width:280px;">
+          <div class="model-subtitle" style="color:var(--accent-gold);">Edge AI · October 2025</div>
+          <div class="model-name" style="margin-top:8px;">Tiny Models in Space</div>
+          <div class="model-desc" style="margin-top:8px;">
+            Led the deployment of the first Earth observation tiny models running directly in space—bringing AI inference to satellite edge devices.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ IMPACT METRICS ════════ -->
+<section class="section impact-section">
+  <div class="section-eyebrow">Impact by Numbers</div>
+  <h2 class="section-title">Measurable <strong>outcomes</strong></h2>
+
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-number">70K</div>
+      <div class="impact-label">Employees impacted by Data.ON transformation at E.ON across 15+ European markets</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-number">7</div>
+      <div class="impact-label">Global IBM Research labs collaborating on the Earth & Space mission</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-number">1M+</div>
+      <div class="impact-label">Downloads of Prithvi geospatial foundation models on Hugging Face</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-number">20+</div>
+      <div class="impact-label">Keynote appearances at major global conferences including IBM Think and Web Summit</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-number">160</div>
+      <div class="impact-label">Climate variables modelled in the Prithvi Weather & Climate foundation model</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-number">50+</div>
+      <div class="impact-label">Peer-reviewed publications with 1,100+ citations across AI, quantum, and geospatial domains</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ RECOGNITION ════════ -->
+<section class="section" id="recognition">
+  <div class="section-eyebrow">Honours & Recognition</div>
+  <h2 class="section-title">Awards and <strong>achievements</strong></h2>
+
+  <div class="recognition-list">
+    <div class="recog-item">
+      <div class="recog-year">December 2025</div>
+      <div>
+        <div class="recog-title">Valor Directivo de España en el Mundo</div>
+        <div class="recog-org"><a href="https://conexionespana.com/juan-bernabe-moreno" target="_blank" style="color:var(--ibm-blue); text-decoration:none;">Fundación Conexión España</a> · Spanish Chamber of Commerce · ICEX · Fundación CEDE</div>
+      </div>
+    </div>
+    <div class="recog-item">
+      <div class="recog-year">February 2025</div>
+      <div>
+        <div class="recog-title">NASA Marshall Group Achievement Award</div>
+        <div class="recog-org"><a href="https://science.nasa.gov/earth-science/geospatial-ai-foundation-model-team-receives-nasa-marshall-group-achievement-award/" target="_blank" style="color:var(--ibm-blue); text-decoration:none;">NASA Science</a> — Geospatial AI Foundation Model Team</div>
+      </div>
+    </div>
+    <div class="recog-item">
+      <div class="recog-year">December 2025</div>
+      <div>
+        <div class="recog-title">American Geophysical Union Open Source Award</div>
+        <div class="recog-org">American Geophysical Union</div>
+      </div>
+    </div>
+    <div class="recog-item">
+      <div class="recog-year">August 2013</div>
+      <div>
+        <div class="recog-title">Best Corporate Venture Award — Smart Steps</div>
+        <div class="recog-org">Corporate Entrepreneur Awards · Telefónica</div>
+      </div>
+    </div>
+    <div class="recog-item">
+      <div class="recog-year">2019</div>
+      <div>
+        <div class="recog-title">Best Paper Award — ITQM 2019</div>
+        <div class="recog-org">"A fuzzy linguistic framework to increase AI intelligibility"</div>
+      </div>
+    </div>
+    <div class="recog-item">
+      <div class="recog-year">2015</div>
+      <div>
+        <div class="recog-title">Best Paper Award — Procedia Computer Science</div>
+        <div class="recog-org">"Emotional Profiling of Locations Based on Social Media"</div>
+      </div>
+    </div>
+    <div class="recog-item">
+      <div class="recog-year">2020</div>
+      <div>
+        <div class="recog-title">INSEAD Business School Case Study Protagonist</div>
+        <div class="recog-org"><a href="https://publishing.insead.edu/case/eon-building-new-ai-powered-energy-world" target="_blank" style="color:var(--ibm-blue); text-decoration:none;">E.ON: Building a New AI-Powered Energy World</a> · Ref. 6595</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PARTNER LOGOS ════════ -->
+<div class="partners-band">
+  <div class="partners-inner">
+    <div class="partners-label">Partnerships & Affiliations</div>
+    <div class="partners-logos">
+      <span class="partner-logo ibm">IBM</span>
+      <span class="partner-logo">NASA</span>
+      <span class="partner-logo">ESA</span>
+      <span class="partner-logo">E.ON</span>
+      <span class="partner-logo">Telefónica</span>
+      <span class="partner-logo">INSEAD</span>
+      <span class="partner-logo">MIT</span>
+      <span class="partner-logo">Oxford</span>
+      <span class="partner-logo">LMU Munich</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ MEDIA ════════ -->
+<section class="section media-section" id="media">
+  <div class="section-eyebrow">In the Media</div>
+  <h2 class="section-title">Featured appearances &amp; commentary</h2>
+
+  <div class="media-grid">
+    <div class="media-card">
+      <a href="https://www.ibm.com/smart-talks-podcast" target="_blank">
+        <div class="media-type">Podcast</div>
+        <div class="media-title">Malcolm Gladwell's Smart Talks — NASA, IBM & AI for Science</div>
+        <div class="media-outlet">Pushkin Industries</div>
+      </a>
+    </div>
+    <div class="media-card">
+      <a href="https://www.acast.com/s/realising-the-ai-advantage-for-the-uk" target="_blank">
+        <div class="media-type">Podcast</div>
+        <div class="media-title">Realising the AI Advantage for the UK</div>
+        <div class="media-outlet">The Times Tech Podcast</div>
+      </a>
+    </div>
+    <div class="media-card">
+      <a href="https://www.wired.com/story/ai-making-volatile-planet-predictable/" target="_blank">
+        <div class="media-type">Feature</div>
+        <div class="media-title">AI is Making Our Volatile Planet More Predictable</div>
+        <div class="media-outlet">Wired Insider</div>
+      </a>
+    </div>
+    <div class="media-card">
+      <a href="https://technologymagazine.com/articles/5-minutes-with-ibm-researchs-dr-juan-bernabe-moreno" target="_blank">
+        <div class="media-type">Profile</div>
+        <div class="media-title">5 Minutes with IBM Research's Dr. Juan Bernabé Moreno</div>
+        <div class="media-outlet">Technology Magazine · December 2023</div>
+      </a>
+    </div>
+    <div class="media-card">
+      <a href="https://aimagazine.com/articles/ibm-continues-to-address-climate-change-via-geospatial-ai" target="_blank">
+        <div class="media-type">Feature</div>
+        <div class="media-title">IBM's Climate Change & Geospatial AI Initiatives — COP28</div>
+        <div class="media-outlet">AI Magazine · November 2023</div>
+      </a>
+    </div>
+    <div class="media-card">
+      <a href="https://techmonitor.ai/technology/ai-and-automation/why-widespread-enterprise-ai-adoption-depends-on-open-source" target="_blank">
+        <div class="media-type">Opinion</div>
+        <div class="media-title">Why Widespread Enterprise AI Adoption Depends on Open-Source</div>
+        <div class="media-outlet">Tech Monitor · March 2025</div>
+      </a>
+    </div>
+    <div class="media-card">
+      <a href="https://www.theengineer.co.uk/content/news/ai-ready-satellite-dataset-targets-flood-and-wildfire-risk/" target="_blank">
+        <div class="media-type">News</div>
+        <div class="media-title">AI-Ready Satellite Dataset Targets Flood & Wildfire Risk</div>
+        <div class="media-outlet">The Engineer · November 2025</div>
+      </a>
+    </div>
+    <div class="media-card">
+      <a href="https://www.techcentral.ie/ibm-director-of-research-dr-juan-bernabe-moreno-introduces-the-ai-alliance/" target="_blank">
+        <div class="media-type">Feature</div>
+        <div class="media-title">Introducing the AI Alliance on Behalf of IBM Research</div>
+        <div class="media-outlet">TechCentral.ie · December 2023</div>
+      </a>
+    </div>
+    <div class="media-card">
+      <a href="https://digital.insead.edu/eon-building-new-ai-powered-energy-world" target="_blank">
+        <div class="media-type">Webinar</div>
+        <div class="media-title">E.ON: Building a New AI-Powered Energy World — In The Case</div>
+        <div class="media-outlet">digital@INSEAD · October 2020</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TEACHING ════════ -->
+<section class="section" id="teaching">
+  <div class="section-eyebrow">Teaching</div>
+  <h2 class="section-title">Shaping the next generation at <strong>LMU Munich</strong></h2>
+  <p class="section-intro">
+    Invited professor at the Ludwig Maximilian University of Munich since 2022, bridging frontier research with academic instruction.
+  </p>
+
+  <div class="teaching-cards">
+    <div class="teach-card">
+      <div class="teach-icon">⚛️</div>
+      <div class="teach-title">Quantum Applications</div>
+      <div class="teach-uni"><a href="https://www.lmu.de" target="_blank" style="color:inherit; text-decoration:none;">Ludwig Maximilian University of Munich</a></div>
+      <div class="teach-desc">
+        Quantum optimisation algorithms, quantum machine learning, and the practical application of quantum computing to real-world scientific and industrial problems.
+      </div>
+    </div>
+    <div class="teach-card">
+      <div class="teach-icon">🧠</div>
+      <div class="teach-title">Intelligent Systems</div>
+      <div class="teach-uni"><a href="https://www.lmu.de" target="_blank" style="color:inherit; text-decoration:none;">Ludwig Maximilian University of Munich</a></div>
+      <div class="teach-desc">
+        Foundations of Deep Learning, Generative AI, and emergent technologies—equipping students with the concepts and tools driving the next wave of intelligent systems.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SELECTED PUBLICATIONS ════════ -->
+<section class="section" style="background: white; border-top: 1px solid var(--ibm-cool-gray-10);">
+  <div class="section-eyebrow">Selected Publications</div>
+  <h2 class="section-title">Research <strong>contributions</strong></h2>
+
+  <div class="recognition-list" style="margin-top:40px;">
+    <div class="recog-item">
+      <div class="recog-year" style="min-width:80px;">2025</div>
+      <div>
+        <div class="recog-title">TerraMind: Large-Scale Generative Multimodality for Earth Observation</div>
+        <div class="recog-org">ICCV 2025 · Jakubik, J., Yang, F., Blumenstiel, B. et al.</div>
+      </div>
+    </div>
+    <div class="recog-item">
+      <div class="recog-year" style="min-width:80px;">2024</div>
+      <div>
+        <div class="recog-title">Foundation models for the electric power grid</div>
+        <div class="recog-org">Joule · Hamann, H.F. et al.</div>
+      </div>
+    </div>
+    <div class="recog-item">
+      <div class="recog-year" style="min-width:80px;">2024</div>
+      <div>
+        <div class="recog-title">Prithvi-EO-2.0: A Versatile Multi-Temporal Foundation Model for Earth Observation</div>
+        <div class="recog-org">arXiv:2412.02732 · Szwarcman, D. et al.</div>
+      </div>
+    </div>
+    <div class="recog-item">
+      <div class="recog-year" style="min-width:80px;">2019</div>
+      <div>
+        <div class="recog-title">A fuzzy linguistic supported framework to increase AI intelligibility for SMEs</div>
+        <div class="recog-org">ITQM 2019 · Best Paper Award</div>
+      </div>
+    </div>
+    <div class="recog-item">
+      <div class="recog-year" style="min-width:80px;">2015</div>
+      <div>
+        <div class="recog-title">Emotional Profiling of Locations Based on Social Media</div>
+        <div class="recog-org">Procedia Computer Science · Best Paper Award</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;">
+    <a href="https://scholar.google.com/citations?user=GOOGLE_SCHOLAR_ID" target="_blank" style="color:var(--ibm-blue); text-decoration:none; font-size:0.875rem; font-weight:500;">
+      View all publications on Google Scholar →
+    </a>
+    &nbsp;&nbsp;
+    <a href="https://www.researchgate.net/profile/Juan-Bernabe-Moreno" target="_blank" style="color:var(--ibm-blue); text-decoration:none; font-size:0.875rem; font-weight:500;">
+      ResearchGate Profile →
+    </a>
+  </div>
+</section>
+
+<!-- ════════ FAQ ════════ -->
+<section class="section" id="faq" style="border-top:1px solid var(--ibm-cool-gray-10);">
+  <div class="section-eyebrow">Questions & Answers</div>
+  <h2 class="section-title">Frequently <strong>asked</strong></h2>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        What motivates your work in climate and space?
+      </div>
+      <div class="faq-a">
+        <p>Climate change and space weather are among the most consequential challenges of our time—and they're deeply interconnected. Foundation models give us an unprecedented ability to understand Earth's systems holistically. When we trained Prithvi on NASA satellite data, we saw how AI could detect floods, map wildfires, and monitor crops at scale. With HelioFM, we can now forecast space weather that affects satellites and power grids. The thread connecting all of this work is using open science and open-source AI to make our planet more predictable—and more resilient.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Why partner with IBM Research?
+      </div>
+      <div class="faq-a">
+        <p>IBM Research brings a unique combination of deep scientific expertise, massive computational infrastructure, and a commitment to open-source. Our partnerships with NASA and ESA aren't just about publishing papers—they're about deploying models that real agencies and governments use for disaster response, climate monitoring, and scientific discovery. We operate research labs across three continents and can bridge the gap between frontier research and real-world impact.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        How did the E.ON transformation become an INSEAD case study?
+      </div>
+      <div class="faq-a">
+        <p>When I joined E.ON as their first CDO, AI was—in the words of the <a href="https://knowledge.insead.edu/operations/how-data-transforming-energy-sector" target="_blank">INSEAD Knowledge article</a>—"a very abstract concept." The priority was to make it tangible for 70,000 employees. We built Data.ON, a board-sponsored programme encompassing strategy, governance, and operating model. Professor Theodoros Evgeniou from INSEAD recognised the approach as a model for enterprise AI transformation, and we co-authored the case study, which is now taught globally to MBA and executive education students.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        What is the intersection of quantum computing and AI?
+      </div>
+      <div class="faq-a">
+        <p>This is one of the most exciting frontiers in computing. At IBM Research, we're exploring how quantum algorithms can accelerate specific AI workloads—from optimisation problems in logistics and finance to training certain classes of machine learning models. I teach Quantum Applications at LMU Munich, covering quantum optimisation, quantum machine learning, and practical applications. The convergence of quantum and AI isn't science fiction—it's an active research agenda with real milestones.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        How can I collaborate or get in touch?
+      </div>
+      <div class="faq-a">
+        <p>I'm always interested in conversations around AI for science, quantum computing applications, climate AI, and enterprise transformation. You can reach me through my <a href="https://research.ibm.com/people/juan-bernabe-moreno" target="_blank">IBM Research profile</a>, connect on <a href="https://www.linkedin.com/in/juanbernabe" target="_blank">LinkedIn</a>, or find my academic work on <a href="https://scholar.google.com" target="_blank">Google Scholar</a> and <a href="https://www.researchgate.net/profile/Juan-Bernabe-Moreno" target="_blank">ResearchGate</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PERSONAL ════════ -->
+<section class="section personal-section">
+  <div class="section-eyebrow">Beyond the Lab</div>
+  <h2 class="section-title">The <strong>human</strong> side</h2>
+
+  <div class="personal-grid">
+    <div class="personal-text">
+      <p>
+        I was born in Antequera, a small city in the heart of Andalusia, Spain. My path has taken me from the sunlit courtyards of Granada's university to the precision of German engineering at TU Braunschweig, through the boardrooms of Europe's largest energy company, and into the research labs where we're teaching AI to understand our planet from orbit.
+      </p>
+      <p>
+        I believe that the best technology is built at the intersection of rigorous science and genuine human curiosity. Whether I'm presenting foundation models at Web Summit, teaching quantum computing to students in Munich, or discussing AI with Malcolm Gladwell on his podcast—what drives me is making complex technology tangible and useful for real people.
+      </p>
+      <p>
+        I live in Dublin, Ireland, with its perfectly imperfect weather—which, fittingly, makes me think about climate models daily.
+      </p>
+      <div class="language-pills">
+        <span class="lang-pill"><span class="lang-flag">🇪🇸</span> Spanish (native)</span>
+        <span class="lang-pill"><span class="lang-flag">🇬🇧</span> English</span>
+        <span class="lang-pill"><span class="lang-flag">🇩🇪</span> German</span>
+      </div>
+      <div class="signature">— Juan</div>
+    </div>
+    <div class="personal-values">
+      <div class="value-item">
+        <div class="value-title">Open Science</div>
+        <div class="value-desc">The most impactful research is research shared freely. Our models are open-source because science should be accessible to everyone.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-title">Bridging Worlds</div>
+        <div class="value-desc">From industry to academia, from startups to space agencies—the most exciting breakthroughs happen at the boundaries between disciplines.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-title">Making AI Tangible</div>
+        <div class="value-desc">AI shouldn't be abstract. Whether for a 70,000-person energy company or a farmer monitoring crops from satellite data, it should be understandable and useful.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-title">Climate Urgency</div>
+        <div class="value-desc">We have the tools to understand our planet better than ever before. The question is whether we act fast enough to make a difference.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CTA / CONNECT ════════ -->
+<section class="cta-section" id="connect">
+  <div class="cta-inner">
+    <div class="section-eyebrow">Let's Connect</div>
+    <h2 class="section-title">Interested in <strong>collaboration</strong>?</h2>
+    <p class="cta-text">
+      Whether it's research partnerships, speaking engagements, or a conversation about the future of AI, quantum computing, or climate technology—I'd love to hear from you.
+    </p>
+    <div class="cta-links">
+      <a href="https://research.ibm.com/people/juan-bernabe-moreno" class="cta-link" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        IBM Research
+      </a>
+      <a href="https://www.linkedin.com/in/juanbernabe" class="cta-link" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://scholar.google.com" class="cta-link" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+        Google Scholar
+      </a>
+      <a href="https://www.researchgate.net/profile/Juan-Bernabe-Moreno" class="cta-link" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M19.586 2c-.26 0-.514.017-.762.048C16.948 2.283 15.708 3.37 15.708 5s1.24 2.717 3.116 2.952c.248.031.502.048.762.048.26 0 .514-.017.762-.048C22.224 7.717 23.464 6.63 23.464 5s-1.24-2.717-3.116-2.952A5.768 5.768 0 0 0 19.586 2zM4.536 7C2.038 7 0 9.038 0 11.536v4.928C0 18.962 2.038 21 4.536 21h4.928C11.962 21 14 18.962 14 16.464v-4.928C14 9.038 11.962 7 9.464 7H4.536z"/></svg>
+        ResearchGate
+      </a>
+      <a href="https://orcid.org" class="cta-link" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM8 7.5a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zM8.75 16h-1.5v-6h1.5v6zm7.25 0h-1.5v-3.5c0-1.5-1.5-1.5-1.5 0V16H11.5v-6H13v.75c.58-.83 3-.92 3 .75V16z"/></svg>
+        ORCID
+      </a>
+      <a href="https://impactclimate.mit.edu" class="cta-link" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        MIT MCSC
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-text">© 2026 Juan Bernabé-Moreno. Director, IBM Research Europe.</div>
+    <div class="footer-links">
+      <a href="https://research.ibm.com" target="_blank">IBM Research</a>
+      <a href="https://research.ibm.com/people/juan-bernabe-moreno" target="_blank">Profile</a>
+      <a href="#hero">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════ SCRIPTS ════════ -->
+<script>
+// Particles
+(function() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'hero-particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = 50 + Math.random() * 50 + '%';
+    p.style.animationDelay = Math.random() * 8 + 's';
+    p.style.animationDuration = 6 + Math.random() * 6 + 's';
+    container.appendChild(p);
+  }
+})();
+
+// Nav hide on scroll
+(function() {
+  let last = 0;
+  const nav = document.getElementById('topnav');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    nav.classList.toggle('hidden', y > last && y > 120);
+    last = y;
+  });
+})();
+
+// Timeline reveal on scroll
+(function() {
+  const items = document.querySelectorAll('.tl-item');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  items.forEach(el => obs.observe(el));
+})();
+</script>
 
 </body>
 </html>
