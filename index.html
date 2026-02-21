@@ -1,1088 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr. Juan Bernabé-Moreno</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
-<style>
-
-/* ═══════════════════════════════
-   RESET & TOKENS
-═══════════════════════════════ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  /* Palette */
-  --navy:       #1c2b4a;
-  --navy-dark:  #111d33;
-  --navy-mid:   #243559;
-  --gold:       #a07840;
-  --gold-light: #c4a06a;
-  --rule:       #ddd8d0;
-  --rule-mid:   #c8c2b8;
-  --bg:         #f9f7f4;
-  --surface:    #ffffff;
-  --ink:        #1a1a1a;
-  --ink-2:      #333333;
-  --ink-3:      #555555;
-  --ink-4:      #888888;
-
-  /* Typography */
-  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-  --sans:  'DM Sans', system-ui, sans-serif;
-
-  /* Sizing */
-  --max-w: 780px;
-  --gutter: clamp(20px, 5vw, 60px);
-  --section-gap: clamp(40px, 6vw, 72px);
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--serif);
-  font-size: clamp(16px, 2.2vw, 18px);
-  line-height: 1.8;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ═══════════════════════════════
-   TOP ACCENT BAR
-═══════════════════════════════ */
-.top-accent {
-  height: 4px;
-  background: linear-gradient(90deg, var(--navy-dark) 0%, var(--navy) 55%, var(--gold) 100%);
-}
-
-/* ═══════════════════════════════
-   HEADER / MASTHEAD
-═══════════════════════════════ */
-.masthead {
-  background: var(--navy);
-  padding: clamp(32px, 5vw, 60px) var(--gutter) clamp(28px, 4vw, 52px);
-}
-
-.masthead-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  display: flex;
-  gap: clamp(24px, 4vw, 52px);
-  align-items: flex-start;
-}
-
-/* Photo */
-.photo-col {
-  flex-shrink: 0;
-}
-
-.photo-wrap {
-  width: clamp(90px, 18vw, 160px);
-  aspect-ratio: 1;
-  border-radius: 4px;
-  overflow: hidden;
-  border: 2px solid rgba(255,255,255,0.18);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
-  background: rgba(255,255,255,0.08);
-}
-
-.photo-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 10%;
-  display: block;
-}
-
-/* Text col */
-.masthead-text {
-  flex: 1;
-  min-width: 0;
-}
-
-.masthead-eyebrow {
-  font-family: var(--sans);
-  font-size: clamp(10px, 1.5vw, 11.5px);
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: clamp(8px, 1.5vw, 14px);
-}
-
-.masthead-name {
-  font-family: var(--serif);
-  font-size: clamp(26px, 5.5vw, 46px);
-  font-weight: 500;
-  line-height: 1.12;
-  color: #fff;
-  letter-spacing: -0.01em;
-  margin-bottom: clamp(14px, 2vw, 20px);
-}
-
-.masthead-meta {
-  border-top: 1px solid rgba(255,255,255,0.14);
-  padding-top: clamp(12px, 2vw, 18px);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.meta-row {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  font-family: var(--sans);
-  font-size: clamp(11.5px, 1.8vw, 13px);
-  font-weight: 400;
-  color: rgba(255,255,255,0.62);
-  line-height: 1.4;
-}
-
-.meta-row strong {
-  color: rgba(255,255,255,0.92);
-  font-weight: 500;
-  font-size: clamp(12px, 2vw, 13.5px);
-  white-space: nowrap;
-}
-
-.meta-dot {
-  color: var(--gold-light);
-  flex-shrink: 0;
-}
-
-/* ═══════════════════════════════
-   STICKY NAV
-═══════════════════════════════ */
-.page-nav {
-  background: var(--surface);
-  border-bottom: 1px solid var(--rule);
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.page-nav::-webkit-scrollbar { display: none; }
-
-.page-nav-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
-  display: flex;
-  gap: 0;
-  white-space: nowrap;
-}
-
-.page-nav a {
-  font-family: var(--sans);
-  font-size: clamp(10px, 1.5vw, 11.5px);
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-4);
-  text-decoration: none;
-  padding: clamp(10px, 1.5vw, 13px) clamp(10px, 1.8vw, 16px);
-  border-bottom: 2px solid transparent;
-  transition: color 0.18s, border-color 0.18s;
-  display: inline-block;
-}
-
-.page-nav a:hover {
-  color: var(--navy);
-  border-bottom-color: var(--navy);
-}
-
-/* ═══════════════════════════════
-   MAIN CONTENT WRAPPER
-═══════════════════════════════ */
-.page-body {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 var(--gutter) clamp(60px, 8vw, 100px);
-}
-
-/* ═══════════════════════════════
-   SECTION SCAFFOLD
-═══════════════════════════════ */
-.bio-section {
-  padding-top: var(--section-gap);
-}
-
-.bio-section + .bio-section {
-  border-top: 1px solid var(--rule);
-  margin-top: var(--section-gap);
-}
-
-.section-label {
-  font-family: var(--sans);
-  font-size: clamp(9.5px, 1.4vw, 11px);
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: clamp(16px, 2.5vw, 26px);
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.section-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--rule);
-}
-
-/* ═══════════════════════════════
-   PROSE BLOCKS
-═══════════════════════════════ */
-.prose {
-  color: var(--ink-2);
-}
-
-.prose p {
-  font-size: clamp(16px, 2.2vw, 18px);
-  line-height: 1.82;
-  margin-bottom: clamp(16px, 2.5vw, 22px);
-  font-weight: 400;
-}
-
-.prose p:last-child { margin-bottom: 0; }
-
-/* Drop cap only on large screens to avoid mobile breakage */
-@media (min-width: 520px) {
-  .prose.drop-cap p:first-child::first-letter {
-    font-size: 3.4em;
-    line-height: 0.84;
-    float: left;
-    margin: 0.05em 0.1em 0 0;
-    color: var(--navy);
-    font-weight: 300;
-  }
-}
-
-/* ═══════════════════════════════
-   EXTERNAL LINKS ROW
-═══════════════════════════════ */
-.links-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: clamp(24px, 3.5vw, 36px);
-}
-
-.ext-link {
-  font-family: var(--sans);
-  font-size: clamp(10.5px, 1.6vw, 12px);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--navy);
-  text-decoration: none;
-  padding: 7px 16px;
-  border: 1.5px solid var(--navy);
-  border-radius: 2px;
-  transition: background 0.18s, color 0.18s;
-  display: inline-block;
-}
-
-.ext-link:hover {
-  background: var(--navy);
-  color: #fff;
-}
-
-/* ═══════════════════════════════
-   EDUCATION ENTRIES
-═══════════════════════════════ */
-.edu-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin-top: clamp(24px, 3vw, 32px);
-}
-
-.edu-entry {
-  padding: clamp(14px, 2.5vw, 20px) 0;
-  border-bottom: 1px solid var(--rule);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 16px clamp(16px, 3vw, 32px);
-  align-items: baseline;
-}
-.edu-entry:first-child { border-top: 1px solid var(--rule); }
-
-.edu-degree {
-  font-family: var(--serif);
-  font-size: clamp(15.5px, 2vw, 17px);
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.35;
-}
-
-.edu-inst {
-  font-family: var(--sans);
-  font-size: clamp(11px, 1.6vw, 12.5px);
-  color: var(--ink-3);
-  letter-spacing: 0.02em;
-  line-height: 1.4;
-  margin-top: 3px;
-}
-
-.edu-note {
-  font-size: clamp(13.5px, 1.8vw, 15px);
-  font-style: italic;
-  color: var(--ink-4);
-  margin-top: 3px;
-}
-
-.edu-year {
-  font-family: var(--sans);
-  font-size: clamp(11px, 1.5vw, 12.5px);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  color: var(--gold);
-  white-space: nowrap;
-  padding-top: 2px;
-}
-
-/* ═══════════════════════════════
-   CAREER ENTRIES
-═══════════════════════════════ */
-.career-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.career-entry {
-  padding: clamp(24px, 4vw, 36px) 0;
-  border-bottom: 1px solid var(--rule);
-}
-.career-entry:last-child { border-bottom: none; padding-bottom: 0; }
-
-.career-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 4px;
-  flex-wrap: wrap;
-}
-
-.career-role {
-  font-family: var(--serif);
-  font-size: clamp(17px, 2.4vw, 20px);
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.25;
-}
-
-.career-period {
-  font-family: var(--sans);
-  font-size: clamp(11px, 1.6vw, 12.5px);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--gold);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.career-org {
-  font-family: var(--sans);
-  font-size: clamp(11.5px, 1.7vw, 13px);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--navy);
-  margin-bottom: clamp(12px, 2vw, 16px);
-  text-transform: uppercase;
-}
-
-.career-body {
-  font-size: clamp(15.5px, 2.1vw, 17px);
-  line-height: 1.82;
-  color: var(--ink-2);
-}
-
-.career-body p { margin-bottom: 12px; }
-.career-body p:last-child { margin-bottom: 0; }
-
-/* ═══════════════════════════════
-   BLOCK QUOTE / INSET
-═══════════════════════════════ */
-.inset {
-  margin: clamp(18px, 2.5vw, 28px) 0;
-  padding: clamp(16px, 2.5vw, 22px) clamp(18px, 3vw, 28px);
-  background: #f3f0eb;
-  border-left: 3px solid var(--gold);
-}
-
-.inset p {
-  font-size: clamp(15px, 2vw, 16.5px) !important;
-  font-style: italic;
-  color: var(--ink-3) !important;
-  line-height: 1.75 !important;
-  margin-bottom: 0 !important;
-}
-
-.inset cite {
-  display: block;
-  margin-top: 10px;
-  font-style: normal;
-  font-family: var(--sans);
-  font-size: clamp(10px, 1.5vw, 11.5px);
-  letter-spacing: 0.1em;
-  color: var(--ink-4);
-  text-transform: uppercase;
-}
-
-/* ═══════════════════════════════
-   PUBLICATIONS
-═══════════════════════════════ */
-.pub-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.pub-entry {
-  padding: clamp(16px, 2.5vw, 22px) 0;
-  border-bottom: 1px solid var(--rule);
-}
-.pub-entry:first-child { border-top: 1px solid var(--rule); }
-
-.pub-title {
-  font-family: var(--serif);
-  font-size: clamp(15.5px, 2vw, 17px);
-  font-weight: 400;
-  font-style: italic;
-  color: var(--ink);
-  line-height: 1.45;
-  margin-bottom: 5px;
-}
-
-.pub-authors {
-  font-family: var(--sans);
-  font-size: clamp(12px, 1.7vw, 13.5px);
-  color: var(--ink-4);
-  line-height: 1.45;
-  margin-bottom: 4px;
-}
-
-.pub-venue {
-  font-family: var(--sans);
-  font-size: clamp(11.5px, 1.6vw, 13px);
-  color: var(--navy);
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.pub-badge {
-  font-family: var(--sans);
-  font-size: clamp(9px, 1.3vw, 10.5px);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 2px 8px;
-  border: 1.5px solid var(--gold);
-  color: var(--gold);
-  border-radius: 2px;
-}
-
-/* ═══════════════════════════════
-   TEACHING
-═══════════════════════════════ */
-.teaching-list {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(14px, 2vw, 18px);
-  margin-top: clamp(18px, 2.5vw, 24px);
-}
-
-.teaching-item {
-  padding-left: clamp(14px, 2vw, 20px);
-  border-left: 2.5px solid var(--rule-mid);
-}
-
-.teaching-course {
-  font-family: var(--serif);
-  font-size: clamp(16px, 2.1vw, 18px);
-  font-weight: 500;
-  color: var(--ink);
-  margin-bottom: 3px;
-}
-
-.teaching-note {
-  font-size: clamp(13.5px, 1.8vw, 15px);
-  font-style: italic;
-  color: var(--ink-4);
-  font-family: var(--serif);
-}
-
-/* ═══════════════════════════════
-   HONOURS
-═══════════════════════════════ */
-.honor-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.honor-entry {
-  display: grid;
-  grid-template-columns: clamp(38px, 6vw, 50px) 1fr;
-  gap: clamp(14px, 2vw, 22px);
-  padding: clamp(14px, 2.5vw, 20px) 0;
-  border-bottom: 1px solid var(--rule);
-  align-items: start;
-}
-.honor-entry:first-child { border-top: 1px solid var(--rule); }
-
-.honor-year {
-  font-family: var(--sans);
-  font-size: clamp(10.5px, 1.5vw, 12px);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--gold);
-  padding-top: 3px;
-  line-height: 1;
-}
-
-.honor-name {
-  font-family: var(--serif);
-  font-size: clamp(15.5px, 2vw, 17px);
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.35;
-  margin-bottom: 3px;
-}
-
-.honor-org {
-  font-family: var(--sans);
-  font-size: clamp(11px, 1.5vw, 12.5px);
-  color: var(--ink-4);
-  letter-spacing: 0.02em;
-  line-height: 1.45;
-}
-
-/* ═══════════════════════════════
-   MEDIA
-═══════════════════════════════ */
-.media-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.media-entry {
-  display: grid;
-  grid-template-columns: clamp(110px, 18vw, 150px) 1fr;
-  gap: clamp(14px, 2.5vw, 24px);
-  padding: clamp(12px, 2vw, 16px) 0;
-  border-bottom: 1px solid var(--rule);
-  align-items: baseline;
-}
-.media-entry:first-child { border-top: 1px solid var(--rule); }
-
-.media-source {
-  font-family: var(--sans);
-  font-size: clamp(10px, 1.5vw, 11.5px);
-  font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--navy);
-  line-height: 1.35;
-}
-
-.media-desc {
-  font-family: var(--serif);
-  font-size: clamp(14.5px, 2vw, 16px);
-  font-style: italic;
-  color: var(--ink-2);
-  line-height: 1.55;
-}
-
-/* ═══════════════════════════════
-   FOOTER
-═══════════════════════════════ */
-.page-footer {
-  background: var(--navy-dark);
-  padding: clamp(28px, 4vw, 44px) var(--gutter);
-  text-align: center;
-}
-
-.footer-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-}
-
-.footer-name {
-  font-family: var(--serif);
-  font-size: clamp(15px, 2vw, 17px);
-  font-weight: 400;
-  color: rgba(255,255,255,0.8);
-  margin-bottom: clamp(12px, 2vw, 18px);
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 6px 4px;
-  margin-bottom: clamp(16px, 2.5vw, 24px);
-}
-
-.footer-links a {
-  font-family: var(--sans);
-  font-size: clamp(10px, 1.5vw, 11.5px);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
-  text-decoration: none;
-  padding: 6px 14px;
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 2px;
-  transition: all 0.18s;
-}
-
-.footer-links a:hover {
-  color: #fff;
-  border-color: rgba(255,255,255,0.4);
-}
-
-.footer-copy {
-  font-family: var(--sans);
-  font-size: clamp(10px, 1.4vw, 11px);
-  color: rgba(255,255,255,0.28);
-  letter-spacing: 0.08em;
-}
-
-/* ═══════════════════════════════
-   REVEAL ANIMATION
-═══════════════════════════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
-
-/* ═══════════════════════════════
-   MOBILE OVERRIDES
-═══════════════════════════════ */
-
-/* Stack photo below text on very small screens */
-@media (max-width: 400px) {
-  .masthead-inner {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
-  .photo-wrap {
-    width: clamp(80px, 28vw, 110px);
-  }
-}
-
-/* Stack media entries on narrow */
-@media (max-width: 480px) {
-  .media-entry {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
-  .edu-entry {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
-  .edu-year { order: -1; }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan Bernabé-Moreno | About Me</title>
+    <style>
+        /* IBM-Inspired Color Palette & Minimalist Reset */
+        :root {
+            --ibm-blue: #0f62fe;
+            --ibm-dark: #161616;
+            --ibm-light: #f4f4f4;
+            --ibm-white: #ffffff;
+            --accent-warm: #ff832b;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--ibm-dark);
+            background-color: var(--ibm-light);
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+        a {
+            color: var(--ibm-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-warm);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--ibm-blue);
+            padding-bottom: 10px;
+            margin-top: 50px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--ibm-white);
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .hero h1 {
+            color: var(--ibm-dark);
+            margin-bottom: 10px;
+        }
+
+        .hero .tagline {
+            font-size: 1.25rem;
+            color: #525252;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: 340px;
+            background-color: #e0e0e0;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: #525252;
+            font-style: italic;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Content Sections */
+        .section-content {
+            background-color: var(--ibm-white);
+            padding: 60px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Subheadings / Timeline styling */
+        .timeline-item {
+            margin-bottom: 30px;
+        }
+
+        .timeline-item h3 {
+            color: var(--ibm-blue);
+            margin-bottom: 10px;
+        }
+
+        /* Call to Action Buttons (Micro-interactions) */
+        .cta-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--ibm-blue);
+            color: var(--ibm-white);
+            border-radius: 4px;
+            font-weight: 600;
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #0353e9;
+            color: var(--ibm-white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(15, 98, 254, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--ibm-blue);
+            border: 2px solid var(--ibm-blue);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--ibm-blue);
+            color: var(--ibm-white);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.9rem;
+            color: #525252;
+        }
+
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2rem;
+            color: var(--ibm-blue);
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 
-<div class="top-accent"></div>
+    <header class="hero">
+        <div class="container">
+            <h1>Juan Bernabé-Moreno</h1>
+            <p class="tagline">Director of IBM Research Europe focused on AI, quantum computing, and Earth-and-space applications.</p>
+            
+            <div class="video-placeholder">
+                [Insert Professional Headshot or Short Introductory Video]
+            </div>
+        </div>
+    </header>
 
-<!-- ── MASTHEAD ── -->
-<header class="masthead">
-  <div class="masthead-inner">
-    <div class="masthead-text">
-      <p class="masthead-eyebrow">Director of Research &nbsp;·&nbsp; IBM</p>
-      <h1 class="masthead-name">Dr. Juan<br>Bernabé-Moreno</h1>
-      <div class="masthead-meta">
-        <div class="meta-row">
-          <strong>IBM Research Europe</strong>
-          <span class="meta-dot">·</span>
-          <span>Ireland &amp; United Kingdom</span>
-        </div>
-        <div class="meta-row">
-          <strong>Climate &amp; Sustainability</strong>
-          <span class="meta-dot">·</span>
-          <span>Accelerated Discovery Lead</span>
-        </div>
-        <div class="meta-row">
-          <strong>LMU Munich</strong>
-          <span class="meta-dot">·</span>
-          <span>Invited Professor</span>
-        </div>
-      </div>
-    </div>
-    <div class="photo-col">
-      <div class="photo-wrap">
-        <img
-          src="https://research.ibm.com/_next/image?url=https%3A%2F%2Fresearch-website-prod-ibmers-images.s3.us-east.cloud-object-storage.appdomain.cloud%2F4643&w=3840&q=75"
-          alt="Dr. Juan Bernabé-Moreno"
-        >
-      </div>
-    </div>
-  </div>
-</header>
+    <div class="container">
+        <section class="section-content" style="margin-top: -30px; position: relative; z-index: 10;">
+            <h2>Hello, I’m Juan.</h2>
+            [cite_start]<p>I am a Spanish computer scientist, technology executive, and academic. [cite: 151] [cite_start]As the Director of IBM Research Europe for Ireland and the United Kingdom, I lead research laboratories in Dublin, Daresbury, and Hursley focusing on artificial intelligence, quantum computing, and high-performance computing. [cite: 152]</p>
+        </section>
 
-<!-- ── NAVIGATION ── -->
-<nav class="page-nav" aria-label="Page sections">
-  <div class="page-nav-inner">
-    <a href="#biography">Biography</a>
-    <a href="#education">Education</a>
-    <a href="#career">Career</a>
-    <a href="#research">Research</a>
-    <a href="#teaching">Teaching</a>
-    <a href="#recognition">Honours</a>
-    <a href="#media">Media</a>
-  </div>
-</nav>
+        <section class="section-content">
+            <h2>My Professional Journey</h2>
+            
+            <div class="timeline-item">
+                <h3>Early Foundations & Education</h3>
+                [cite_start]<p>Born in Antequera, Málaga, Spain, my foundation in technology began with my undergraduate studies in computer science at the University of Granada, including an exchange at the Technische Universität Braunschweig in Germany. [cite: 160] [cite_start]I went on to complete a master's degree and obtained my PhD in Computer Science from the University of Granada, focusing on the intersection of AI, natural language processing, and social network analysis. [cite: 161, 162]</p>
+            </div>
 
-<!-- ── BODY ── -->
-<main class="page-body">
+            <div class="timeline-item">
+                <h3>Pioneering Data at Telefónica</h3>
+                [cite_start]<p>Earlier in my career, I held senior data and analytics leadership roles at Telefónica. [cite: 156] [cite_start]As Big Data Lab Manager for Telefónica Digital, I led the global product team that created <em>Smart Steps</em>, a data product that won the Best Corporate Venture award in 2013. [cite: 168]</p>
+            </div>
 
-  <!-- BIOGRAPHY -->
-  <section class="bio-section" id="biography">
-    <h2 class="section-label">Biography</h2>
-    <div class="prose drop-cap reveal">
-      <p>
-        Juan Bernabé-Moreno is a Spanish computer scientist, technology executive, and academic. He is the Director of IBM Research Europe for Ireland and the United Kingdom, where he leads research laboratories in Dublin, Daresbury, and Hursley focused on artificial intelligence, quantum computing, and high-performance computing. He also leads IBM's Algorithms and Applications Research mission for Earth and Space, directing researchers across multiple global research laboratories in partnership with NASA and the European Space Agency (ESA).
-      </p>
-      <p>
-        Prior to IBM, Bernabé-Moreno served as Chief Data Officer and Global Head of Data and Analytics at E.ON, Europe's largest investor-owned energy company, where he led the company's enterprise-wide data and AI transformation — later documented as a case study by INSEAD business school. He previously held senior data and analytics leadership roles at Telefónica. He is an invited lecturer at the Ludwig Maximilian University of Munich.
-      </p>
-    </div>
-    <div class="links-row reveal">
-      <a href="https://www.linkedin.com/in/bernabemoreno/" target="_blank" class="ext-link">LinkedIn</a>
-      <a href="https://research.ibm.com/people/juan-bernabe-moreno" target="_blank" class="ext-link">IBM Research</a>
-      <a href="https://scholar.google.de/citations?user=tQH5eLMAAAAJ" target="_blank" class="ext-link">Google Scholar</a>
-      <a href="https://impactclimate.mit.edu/people/juan-bernabe-moreno/" target="_blank" class="ext-link">MIT MCSC</a>
-      <a href="https://orcid.org" target="_blank" class="ext-link">ORCID</a>
-    </div>
-  </section>
+            <div class="timeline-item">
+                <h3>Scaling AI at E.ON</h3>
+                [cite_start]<p>Prior to my current role, I served as the first Chief Data Officer and Global Head of Data and Analytics at E.ON, Europe's largest investor-owned energy company. [cite: 154, 172] [cite_start]I designed and executed <em>Data.ON</em>, an enterprise-wide transformation programme that took the company from near-zero AI maturity to scaled AI across the business. [cite: 173] [cite_start]This journey was later documented as an INSEAD business school case study. [cite: 155, 175]</p>
+            </div>
 
-  <!-- EDUCATION -->
-  <section class="bio-section" id="education">
-    <h2 class="section-label">Early Life &amp; Education</h2>
-    <div class="prose reveal">
-      <p>
-        Bernabé-Moreno was born in Antequera, Málaga, Spain. He studied computer science at the University of Granada, where he obtained his Engineer's degree in 2002, spending part of his undergraduate studies at the Technische Universität Braunschweig in Germany as part of an exchange programme. He later completed a postgraduate master's degree in Soft Computing and Intelligent Systems at the University of Granada (2007–2009) and obtained his PhD in Computer Science from the same institution in 2015, while working full-time in industry.
-      </p>
-      <p>
-        His doctoral work focused on the intersection of artificial intelligence, natural language processing, and social network analysis, supervised by Professor Enrique Herrera-Viedma. He maintains research collaborations with the Mathematical Institute at the University of Oxford and the AI department at the University of Granada.
-      </p>
-    </div>
-    <div class="edu-list reveal">
-      <div class="edu-entry">
-        <div>
-          <div class="edu-degree">Doctor of Philosophy, Computer Science</div>
-          <div class="edu-inst">University of Granada, Spain</div>
-          <div class="edu-note">Artificial intelligence, natural language processing, and social network analysis. Supervisor: Prof. Enrique Herrera-Viedma.</div>
-        </div>
-        <div class="edu-year">2015</div>
-      </div>
-      <div class="edu-entry">
-        <div>
-          <div class="edu-degree">Master's Degree, Soft Computing &amp; Intelligent Systems</div>
-          <div class="edu-inst">University of Granada, Spain</div>
-        </div>
-        <div class="edu-year">2007–2009</div>
-      </div>
-      <div class="edu-entry">
-        <div>
-          <div class="edu-degree">Engineer's Degree, Computer Science</div>
-          <div class="edu-inst">University of Granada, Spain &nbsp;·&nbsp; Exchange: Technische Universität Braunschweig, Germany</div>
-        </div>
-        <div class="edu-year">2002</div>
-      </div>
-    </div>
-  </section>
+            <div class="timeline-item">
+                <h3>Advancing Science at IBM Research</h3>
+                [cite_start]<p>Since joining IBM in June 2022, I have also had the privilege of leading IBM's Algorithms and Applications Research mission for Earth and Space. [cite: 153, 180] </p>
+                <br>
+                                <br>
+                [cite_start]<p>Partnering with NASA and the European Space Agency (ESA), my teams and I have built open-source foundation models for science, including <em>Prithvi-EO</em> for Earth observation, <em>Prithvi WxC</em> for weather forecasting, <em>Surya</em> for heliophysics, and <em>TerraMind</em>. [cite: 153, 188, 190, 191, 193]</p>
+            </div>
+        </section>
 
-  <!-- CAREER -->
-  <section class="bio-section" id="career">
-    <h2 class="section-label">Career</h2>
-    <div class="career-list">
+        <section class="section-content">
+            <h2>Impact & Social Proof</h2>
+                        <ul>
+                [cite_start]<li><strong>Global Recognition:</strong> In December 2025, I was honoured with the <em>Valor Directivo de España en el Mundo</em> recognition for contributing to Spain's reputation and internationalisation. [cite: 218, 219]</li>
+                [cite_start]<li><strong>Scientific Awards:</strong> My work has been recognised by organizations including NASA and the American Geophysical Union, including the NASA Group Achievement Honor Award (2025) and the AGU Honors Open Source Award (2025). [cite: 158, 217]</li>
+                [cite_start]<li><strong>Media & Thought Leadership:</strong> I am a regular commentator on AI and quantum computing in international media, with notable appearances on Malcolm Gladwell's <em>Smart Talks</em> podcast, <em>The Times Tech Podcast</em>, and <em>Wired</em>. [cite: 221, 222, 223, 224]</li>
+                [cite_start]<li><strong>Consortiums:</strong> I am proud to be a member of the MIT Climate and Sustainability Consortium, representing IBM Research. [cite: 199]</li>
+            </ul>
+        </section>
 
-      <div class="career-entry reveal">
-        <div class="career-head">
-          <div class="career-role">Director, IBM Research Europe — Ireland &amp; United Kingdom</div>
-          <div class="career-period">2022 — Present</div>
-        </div>
-        <div class="career-org">IBM Research &nbsp;·&nbsp; Dublin · Daresbury · Hursley</div>
-        <div class="career-body">
-          <p>Bernabé-Moreno joined IBM in June 2022 as Director of IBM Research Europe for Ireland and the United Kingdom. He is responsible for research operations across three laboratories conducting work in artificial intelligence, quantum computing, semiconductors, and other frontier technologies. He engages directly with UK and Irish governments on national quantum and AI strategies, advises policymakers on sovereign computing infrastructure and AI governance, and oversees a joint research programme with Trinity College Dublin.</p>
-          <p>He leads IBM's partnerships with NASA and the European Space Agency, producing a family of open-source foundation models for science spanning Earth observation, weather forecasting, heliophysics, and multimodal Earth AI. The team also developed the first Earth observation tiny models deployed in space.</p>
-        </div>
-      </div>
+        <section class="section-content">
+            <h2>Mission & Values (FAQ)</h2>
+            <div class="timeline-item">
+                <h3>Why is teaching important to you?</h3>
+                <p>I believe in sharing knowledge with the next generation. [cite_start]Since April 2022, I have been an invited professor at the Ludwig Maximilian University of Munich (LMU), where I teach courses on Quantum Applications and Intelligent Systems. [cite: 213, 214, 215]</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h3>Behind the Scenes</h3>
+                <p>While my work takes me across the globe, I am currently based in Dublin, Ireland. [cite_start]I am a native Spanish speaker and am also fluent in English and German. [cite: 232]</p>
+            </div>
+        </section>
 
-      <div class="career-entry reveal">
-        <div class="career-head">
-          <div class="career-role">Chief Data Officer &amp; Global Head of Data and Analytics</div>
-          <div class="career-period">2017 — 2022</div>
-        </div>
-        <div class="career-org">E.ON &nbsp;·&nbsp; Munich, Germany</div>
-        <div class="career-body">
-          <p>Appointed as E.ON's first Chief Data Officer in April 2017, Bernabé-Moreno was tasked with leading the data and AI transformation of one of Europe's largest energy companies — approximately 70,000 employees across more than 15 European markets. He designed and executed Data.ON, the board-approved enterprise-wide data transformation programme, taking the company from near-zero AI maturity to embedded, scaled AI across the business.</p>
-        </div>
-        <div class="inset">
-          <p>The transformation was documented in the INSEAD business school case study <em>E.ON: Building a New AI-Powered Energy World</em> (Reference 6595), co-authored with Professor Theodoros Evgeniou of INSEAD. The case study is taught to MBA and executive education students globally as a model for enterprise AI transformation. An INSEAD Knowledge article noted that when Bernabé-Moreno joined E.ON, "AI was a very abstract concept" and that his stated priority was to "make it tangible for everyone in the company."</p>
-          <cite>INSEAD Knowledge · October 2020</cite>
-        </div>
-      </div>
+        <section class="section-content" style="text-align: center;">
+            <h2>Let's Connect</h2>
+            <p>I am always open to discussing AI, quantum computing, and their applications in climate and space science.</p>
+            
+            <div class="cta-container" style="justify-content: center;">
+                <a href="#" class="btn">Contact Me for Collaborations</a>
+                <a href="#" class="btn btn-outline">Read My Publications</a>
+            </div>
 
-      <div class="career-entry reveal">
-        <div class="career-head">
-          <div class="career-role">Senior Data &amp; Analytics Leadership</div>
-          <div class="career-period">2009 — 2017</div>
-        </div>
-        <div class="career-org">Telefónica · Germany</div>
-        <div class="career-body">
-          <p>Bernabé-Moreno held progressively senior roles at Telefónica over eight years. As Big Data Lab Manager for Telefónica Digital (2012–2013), he led the global product team that created Smart Steps, a data product that won the Best Corporate Venture award at the Corporate Entrepreneur Awards in August 2013. He subsequently led web intelligence and online data science teams at Telefónica Germany, implementing data-driven culture change across the organisation.</p>
-        </div>
-      </div>
-
-      <div class="career-entry reveal">
-        <div class="career-head">
-          <div class="career-role">Software Development &amp; IT Consulting</div>
-          <div class="career-period">2002 — 2009</div>
-        </div>
-        <div class="career-org">Publicis Sapient · DMR Consulting · Vision Unlimited</div>
-        <div class="career-body">
-          <p>Following his engineering degree, Bernabé-Moreno held positions in software development and IT consulting across Spain and Germany, building the applied technical foundation for his subsequent research and executive career.</p>
-        </div>
-      </div>
+            <div style="margin-top: 40px; text-align: left;">
+                <h3>Professional Links</h3>
+                <ul>
+                    [cite_start]<li><a href="#">IBM Research profile</a> [cite: 277]</li>
+                    [cite_start]<li><a href="#">Google Scholar profile</a> [cite: 278]</li>
+                    [cite_start]<li><a href="#">ResearchGate profile</a> [cite: 279]</li>
+                    [cite_start]<li><a href="#">MIT Climate & Sustainability Consortium profile</a> [cite: 280]</li>
+                    [cite_start]<li><a href="#">ORCID profile</a> [cite: 281]</li>
+                </ul>
+            </div>
+            
+            <div class="signature">
+                Juan Bernabé-Moreno
+            </div>
+        </section>
 
     </div>
-  </section>
 
-  <!-- RESEARCH -->
-  <section class="bio-section" id="research">
-    <h2 class="section-label">Research &amp; Publications</h2>
-    <div class="prose reveal">
-      <p>
-        Bernabé-Moreno has authored over 50 publications in peer-reviewed venues contributing to emergent technology directions. He holds several patents. His early research focused on social network analysis, recommender systems, and natural language processing, while his more recent work spans geospatial AI, quantum computing applications, foundation models, and computational intractability.
-      </p>
-      <p>
-        Under his leadership, IBM's partnerships with NASA and ESA have produced several widely adopted open-source foundation models for science. The geospatial model Prithvi — trained on NASA's Harmonized Landsat and Sentinel-2 data — supports flood mapping, burn scar detection, and cropland analysis. Prithvi WxC is a 2.3-billion-parameter foundation model for weather and climate forecasting, trained on 160 variables from NASA's MERRA-2 reanalysis data. HelioFM, trained on 14 years of observations from NASA's Solar Dynamics Observatory, supports space weather forecasting. TerraMind, developed with ESA as part of the FAST-EO project, is the first any-to-any generative, multimodal foundation model for Earth observation; its paper was accepted at ICCV 2025.
-      </p>
-      <p>
-        In November 2025, IBM and ESA released ImpactMesh, a global multimodal dataset for disaster mapping. Bernabé-Moreno is a member of the MIT Climate and Sustainability Consortium (MCSC), representing IBM Research.
-      </p>
-    </div>
+    <footer>
+        <p>&copy; 2026 Juan Bernabé-Moreno. All rights reserved.</p>
+    </footer>
 
-    <h3 class="section-label reveal" style="margin-top: clamp(28px, 4vw, 44px);">Selected Publications</h3>
-    <div class="pub-list reveal">
-      <div class="pub-entry">
-        <div class="pub-title">TerraMind: Large-Scale Generative Multimodality for Earth Observation</div>
-        <div class="pub-authors">Jakubik, J., Yang, F., Blumenstiel, B. et al.</div>
-        <div class="pub-venue">
-          IEEE/CVF International Conference on Computer Vision (ICCV) · 2025 · pp. 7383–7394
-        </div>
-      </div>
-      <div class="pub-entry">
-        <div class="pub-title">Foundation models for the electric power grid</div>
-        <div class="pub-authors">Hamann, H.F. et al.</div>
-        <div class="pub-venue">Joule · 2024</div>
-      </div>
-      <div class="pub-entry">
-        <div class="pub-title">Prithvi-EO-2.0: A Versatile Multi-Temporal Foundation Model for Earth Observation Applications</div>
-        <div class="pub-authors">Szwarcman, D. et al.</div>
-        <div class="pub-venue">arXiv:2412.02732 · 2024</div>
-      </div>
-      <div class="pub-entry">
-        <div class="pub-title">A fuzzy linguistic supported framework to increase Artificial Intelligence intelligibility for subject matter experts</div>
-        <div class="pub-authors">Bernabé-Moreno, J., Wildberger, K.</div>
-        <div class="pub-venue">
-          ITQM 2019 &nbsp;<span class="pub-badge">Best Paper Award</span>
-        </div>
-      </div>
-      <div class="pub-entry">
-        <div class="pub-title">Emotional Profiling of Locations Based on Social Media</div>
-        <div class="pub-authors">Bernabé-Moreno, J., Tejeda-Lorente, A., Porcel, C., Fujita, H., and Herrera-Viedma, E.</div>
-        <div class="pub-venue">
-          Procedia Computer Science · Vol. 55, pp. 960–969 · 2015 &nbsp;<span class="pub-badge">Best Paper Award</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEACHING -->
-  <section class="bio-section" id="teaching">
-    <h2 class="section-label">Teaching</h2>
-    <div class="prose reveal">
-      <p>
-        Since April 2022, Bernabé-Moreno has been an invited professor at the Ludwig Maximilian University of Munich, where he teaches graduate courses on emerging computational technologies.
-      </p>
-    </div>
-    <div class="teaching-list reveal">
-      <div class="teaching-item">
-        <div class="teaching-course">Quantum Applications</div>
-        <div class="teaching-note">Quantum optimisation algorithms, quantum machine learning, and related topics.</div>
-      </div>
-      <div class="teaching-item">
-        <div class="teaching-course">Intelligent Systems</div>
-        <div class="teaching-note">Foundations of deep learning, generative artificial intelligence, and emergent technologies.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HONOURS -->
-  <section class="bio-section" id="recognition">
-    <h2 class="section-label">Honours &amp; Recognition</h2>
-    <div class="honor-list reveal">
-      <div class="honor-entry">
-        <div class="honor-year">2025</div>
-        <div>
-          <div class="honor-name">Valor Directivo de España en el Mundo</div>
-          <div class="honor-org">Fundación Conexión España · Spanish Chamber of Commerce, ICEX España Exportación e Inversiones, and Fundación CEDE</div>
-        </div>
-      </div>
-      <div class="honor-entry">
-        <div class="honor-year">2025</div>
-        <div>
-          <div class="honor-name">NASA Marshall Group Achievement Award</div>
-          <div class="honor-org">NASA Science · Geospatial AI Foundation Model Team</div>
-        </div>
-      </div>
-      <div class="honor-entry">
-        <div class="honor-year">2024</div>
-        <div>
-          <div class="honor-name">Open Source Award</div>
-          <div class="honor-org">American Geophysical Union (AGU)</div>
-        </div>
-      </div>
-      <div class="honor-entry">
-        <div class="honor-year">2020</div>
-        <div>
-          <div class="honor-name">INSEAD Business Case Study — <em>E.ON: Building a New AI-Powered Energy World</em></div>
-          <div class="honor-org">INSEAD Publishing · Reference 6595 · Co-authored with Prof. Theodoros Evgeniou</div>
-        </div>
-      </div>
-      <div class="honor-entry">
-        <div class="honor-year">2019</div>
-        <div>
-          <div class="honor-name">Best Paper Award, ITQM Conference</div>
-          <div class="honor-org">Information Technology and Quantitative Management</div>
-        </div>
-      </div>
-      <div class="honor-entry">
-        <div class="honor-year">2015</div>
-        <div>
-          <div class="honor-name">Best Paper Award, Procedia Computer Science</div>
-          <div class="honor-org">Elsevier · World Conference on Information Systems and Technologies</div>
-        </div>
-      </div>
-      <div class="honor-entry">
-        <div class="honor-year">2013</div>
-        <div>
-          <div class="honor-name">Best Corporate Venture Award</div>
-          <div class="honor-org">Corporate Entrepreneur Awards · Smart Steps, Telefónica Digital</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MEDIA -->
-  <section class="bio-section" id="media">
-    <h2 class="section-label">Media &amp; Public Engagement</h2>
-    <div class="prose reveal">
-      <p>
-        Bernabé-Moreno is a regular commentator on AI and quantum computing in international media. He has served as keynote speaker at over 20 major industry events, including IBM Think, Web Summit, Wired, IEEE Systems, Man, and Cybernetics Society, and the European Big Data Value Forum.
-      </p>
-    </div>
-    <div class="media-list reveal">
-      <div class="media-entry">
-        <div class="media-source">Malcolm Gladwell — Smart Talks</div>
-        <div class="media-desc">The IBM and NASA partnership and foundational AI for science</div>
-      </div>
-      <div class="media-entry">
-        <div class="media-source">The Times Tech Podcast</div>
-        <div class="media-desc">Realising the AI Advantage for the UK — alongside Leon Butler, Chief Executive of IBM UK &amp; Ireland</div>
-      </div>
-      <div class="media-entry">
-        <div class="media-source">Wired</div>
-        <div class="media-desc">AI is Making Our Volatile Planet More Predictable</div>
-      </div>
-      <div class="media-entry">
-        <div class="media-source">Tech Monitor</div>
-        <div class="media-desc">Why Widespread Enterprise AI Adoption Depends on Open-Source (March 2025)</div>
-      </div>
-      <div class="media-entry">
-        <div class="media-source">The Engineer</div>
-        <div class="media-desc">AI-ready satellite dataset targets flood and wildfire risk — ImpactMesh (November 2025)</div>
-      </div>
-      <div class="media-entry">
-        <div class="media-source">Technology Magazine</div>
-        <div class="media-desc">5 Minutes with IBM Research's Dr. Juan Bernabe Moreno (December 2023)</div>
-      </div>
-      <div class="media-entry">
-        <div class="media-source">AI Magazine</div>
-        <div class="media-desc">IBM's climate change and geospatial AI initiatives — ahead of COP28 (November 2023)</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PERSONAL -->
-  <section class="bio-section" id="personal">
-    <h2 class="section-label">Personal</h2>
-    <div class="prose reveal">
-      <p>Bernabé-Moreno speaks Spanish (native), English, and German. He is based in Dublin, Ireland.</p>
-    </div>
-  </section>
-
-</main>
-
-<!-- ── FOOTER ── -->
-<footer class="page-footer">
-  <div class="footer-inner">
-    <p class="footer-name">Dr. Juan Bernabé-Moreno</p>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/bernabemoreno/" target="_blank">LinkedIn</a>
-      <a href="https://research.ibm.com/people/juan-bernabe-moreno" target="_blank">IBM Research</a>
-      <a href="https://scholar.google.de/citations?user=tQH5eLMAAAAJ" target="_blank">Google Scholar</a>
-      <a href="https://impactclimate.mit.edu/people/juan-bernabe-moreno/" target="_blank">MIT MCSC</a>
-      <a href="https://orcid.org" target="_blank">ORCID</a>
-    </div>
-    <p class="footer-copy">Dublin, Ireland</p>
-  </div>
-</footer>
-
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
